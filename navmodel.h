@@ -3,6 +3,7 @@
 
 #include <QAbstractListModel>
 #include <vector>
+#include <QtDebug>
 
 class TreeNode :public QObject {
     Q_OBJECT

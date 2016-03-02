@@ -119,8 +119,10 @@ void NavModel::RefreshList() {
 void NavModel::Collapse( const QModelIndex& index ) {
     TreeNode* node = m_list[index.row()].treeNode;
 
-    if ( node->children.size() == 0 )
+    if ( node->children.size() == 0 ) {
+        qDebug() << node->label;
         return;
+    }
 
     node->collapse = !node->collapse;
 

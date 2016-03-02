@@ -15,7 +15,9 @@ MainWindow::MainWindow(QWidget *parent) :
     NavDelegate* delegate = new NavDelegate(this);
     this->ui->listView->setModel(model);
     this->ui->listView->setItemDelegate(delegate);
-    connect(this->ui->listView, SIGNAL(doubleClicked(const QModelIndex &)), model, SLOT(Collapse(const QModelIndex&)));
+    this->connect(this->ui->listView, SIGNAL(doubleClicked(const QModelIndex &)), model, SLOT(Collapse(const QModelIndex&)));
+    // QAction *qa = this->ui->listView->actions()[0];
+
 
 }
 
