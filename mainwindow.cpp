@@ -18,6 +18,9 @@ MainWindow::MainWindow(QWidget *parent) :
     this->connect(this->ui->listView, SIGNAL(doubleClicked(const QModelIndex &)), model, SLOT(Collapse(const QModelIndex&)));
     // QAction *qa = this->ui->listView->actions()[0];
 
+    // this->ui->frame->set
+    // this->ui->widget->addAction();
+    
 
 }
 
