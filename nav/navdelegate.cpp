@@ -1,7 +1,7 @@
 
 #include "navdelegate.h"
 
-#include "navmodel.h"
+#include "nav/navmodel.h"
 #include "colordefines.h"
 
 #include <QPainter>
@@ -38,14 +38,10 @@ QSize NavDelegate::sizeHint( const QStyleOptionViewItem &option, const QModelInd
     //NavModel::TreeNode* node = (NavModel::TreeNode*)index.internalPointer();
     //NavModel::TreeNode* node = (NavModel::TreeNode*)index.data(Qt::UserRole).toUInt();
     //NavModel::TreeNode* node = index.data(Qt::UserRole).value<NavModel::TreeNode*>();
+
     TreeNode* node = index.data(Qt::UserRole).value<TreeNode*>();
+    return node->level==1 ? QSize(50, 35) : QSize(50, 28);
 
-    if ( node->level == 1)
-        return QSize(50, 35);
-    else
-        return QSize(50, 28);
-
-    //return QSize(50, 35);
 }
 
 void NavDelegate::paint( QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index ) const {
@@ -61,10 +57,16 @@ void NavDelegate::paint( QPainter *painter, const QStyleOptionViewItem &option, 
     } else if ( option.state & QStyle::State_MouseOver ) {
         painter->fillRect(option.rect, color_hover);
     } else {
+
+        painter->fillRect(option.rect, node->level == 1 ? color_parent_normal : color_child_normal);
+
+        /*
         if ( node->level == 1 )
             painter->fillRect(option.rect, color_parent_normal);
         else
             painter->fillRect(option.rect, color_child_normal);
+        */
+
     }
 
     // draw decorate
@@ -73,14 +75,14 @@ void NavDelegate::paint( QPainter *painter, const QStyleOptionViewItem &option, 
 
         if ( node->collapse ) {
             if ( option.state & QStyle::State_Selected )
-                imgPath = ":/icon/res/icon/unexpand_selected.png";
+                imgPath = ":/res/icon/unexpand_selected.png";
             else
-                imgPath = ":/icon/res/icon/unexpand_normal.png";
+                imgPath = ":/res/icon/unexpand_normal.png";
         } else {
             if ( option.state & QStyle::State_Selected )
-                imgPath = ":/icon/res/icon/expand_selected.png";
+                imgPath = ":/res/icon/expand_selected.png";
             else
-                imgPath = ":/icon/res/icon/expand_normal.png";
+                imgPath = ":/res/icon/expand_normal.png";
         }
 
         QPixmap img(imgPath);
@@ -97,10 +99,14 @@ void NavDelegate::paint( QPainter *painter, const QStyleOptionViewItem &option, 
     QPen textPen( option.state & QStyle::State_Selected ? color_text_selected : color_text_normal);
     painter->setPen(textPen);
 
+    int margin = node->level == 1 ? 25 : 30;
+
+    /*
     int margin = 25;
 
     if ( node->level == 2 )
-        margin = 45;
+        margin = 30;
+    */
 
     QRect rect = option.rect;
     rect.setWidth(rect.width() - margin);

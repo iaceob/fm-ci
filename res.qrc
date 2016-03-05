@@ -1,5 +1,6 @@
 <RCC>
-    <qresource prefix="/icon">
+    <qresource prefix="/">
+        <file>res/icon/aide.png</file>
         <file>res/icon/expand_normal.png</file>
         <file>res/icon/expand_selected.png</file>
         <file>res/icon/unexpand_normal.png</file>

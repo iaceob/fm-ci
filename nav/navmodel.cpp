@@ -39,6 +39,7 @@ void NavModel::ReadDataFromConfig(QString path) {
     for ( int i = 0; i != children.count(); ++i ) {
         QDomElement nodeInfo = children.at(i).toElement();
         TreeNode* node = new TreeNode;
+        node->id = nodeInfo.attribute("id");
         node->label = nodeInfo.attribute("label");
         node->collapse = nodeInfo.attribute("collapse").toInt();
         node->count = nodeInfo.attribute("count").toInt();
@@ -49,6 +50,7 @@ void NavModel::ReadDataFromConfig(QString path) {
         for ( int j = 0; j != secondLevel.count(); ++j ) {
             QDomElement secNodeInfo = secondLevel.at(j).toElement();
             TreeNode* secNode = new TreeNode;
+            secNode->id = secNodeInfo.attribute("id");
             secNode->label = secNodeInfo.attribute("label");
             secNode->count = secNodeInfo.attribute("count").toInt();
             secNode->collapse = false;
@@ -60,7 +62,7 @@ void NavModel::ReadDataFromConfig(QString path) {
         m_nodeList.push_back(node);
     }
 
-    RefreshList();
+    refreshList();
     beginInsertRows(QModelIndex(), 0, m_list.size());
     endInsertRows();
 }
@@ -78,14 +80,15 @@ QVariant NavModel::data( const QModelIndex &index, int role /* = Qt::DisplayRole
 
     if ( role == Qt::DisplayRole )
         return m_list[index.row()].label;
-    else if ( role == Qt::UserRole )
+
+    if ( role == Qt::UserRole )
         /*return (unsigned int)(m_list[index.row()].treeNode);*/
         return QVariant::fromValue(m_list[index.row()].treeNode);
 
     return QVariant();
 }
 
-void NavModel::RefreshList() {
+void NavModel::refreshList() {
     m_list.clear();
 
     for ( std::vector<TreeNode*>::iterator it = m_nodeList.begin();
@@ -116,30 +119,50 @@ void NavModel::RefreshList() {
     }
 }
 
-void NavModel::Collapse( const QModelIndex& index ) {
-    TreeNode* node = m_list[index.row()].treeNode;
+///**
+// *  導航菜單雙擊事件
+// * @brief NavModel::collapseSlot
+// * @param index
+// */
+//void NavModel::collapseSlot(const QModelIndex &index) {
+//    TreeNode* node = m_list[index.row()].treeNode;
+//    if (node->children.size()!=0) {
+//        node->collapse = !node->collapse;
+//        refreshList();
+//        if ( !node->collapse ) {
+//            beginInsertRows(QModelIndex(), index.row()+1, index.row()+node->children.size());
+//            endInsertRows();
+//        } else {
+//            beginRemoveRows(QModelIndex(), index.row()+1, index.row()+node->children.size());
+//            endRemoveRows();
+//        }
+//        return;
+//    }
 
-    if ( node->children.size() == 0 ) {
-        qDebug() << node->label;
+//    switch(NavSelect::getType(node->id)) {
+//    case ORDER:
+//        break;
+//    case ORDER_BATCH_MILTI:
+//        qDebug() << "bacth";
+//        break;
+//    case ORDER_BATCH_SAME:
+//        break;
+//    case ORDER_DELETE:
+//        break;
+
+//    }
+
+//}
+
+void NavModel::refresh(bool isCollapse, int first, int last) {
+    refreshList();
+    // beginResetModel();
+    // endResetModel();
+    if (isCollapse) {
+        beginRemoveRows(QModelIndex(), first, last);
+        endRemoveRows();
         return;
     }
-
-    node->collapse = !node->collapse;
-
-    RefreshList();
-
-    if ( !node->collapse ) {
-        beginInsertRows(QModelIndex(), index.row()+1, index.row()+node->children.size());
-        endInsertRows();
-    } else {
-        beginRemoveRows(QModelIndex(), index.row()+1, index.row()+node->children.size());
-        endRemoveRows();
-    }
-
-}
-
-void NavModel::Refresh() {
-    RefreshList();
-    beginResetModel();
-    endResetModel();
+    beginInsertRows(QModelIndex(), first, last);
+    endInsertRows();
 }
