@@ -6,13 +6,15 @@
 #include <QDebug>
 #include <QMessageBox>
 #include <QTranslator>
+#include <QMenu>
+#include <QDir>
+#include "common/aidelanguage.h"
 
 namespace Ui {
 class LoginWidget;
 }
 
-class LoginWidget : public QWidget
-{
+class LoginWidget : public QWidget {
     Q_OBJECT
 
 public:
@@ -24,11 +26,15 @@ protected:
 
 private:
     Ui::LoginWidget *ui;
-    void refreshLanguage();
+    void refreshLanguage(QString lan);
 
 private slots:
     void loginSlot();
-    void confSlot();
+    void serialEditSlot();
+    void confProxySlot();
+    void toLanEnUS();
+    void toLanZhCN();
+    void toLanZhTW();
 };
 
 #endif // LOGINWIDGET_H

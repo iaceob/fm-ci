@@ -38,7 +38,7 @@
     </message>
     <message>
         <location filename="view/usr/loginwidget.ui" line="210"/>
-        <location filename="view/usr/loginwidget.cpp" line="11"/>
+        <location filename="view/usr/loginwidget.cpp" line="65"/>
         <source>登入</source>
         <translation type="unfinished">Sign In</translation>
     </message>
@@ -53,22 +53,32 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="view/usr/loginwidget.cpp" line="20"/>
+        <location filename="view/usr/loginwidget.cpp" line="34"/>
+        <source>代理</source>
+        <translation type="unfinished">Proxy</translation>
+    </message>
+    <message>
+        <location filename="view/usr/loginwidget.cpp" line="35"/>
+        <source>語言</source>
+        <translation type="unfinished">Language</translation>
+    </message>
+    <message>
+        <location filename="view/usr/loginwidget.cpp" line="66"/>
         <source>賬戶編號</source>
         <translation type="unfinished">Serial</translation>
     </message>
     <message>
-        <location filename="view/usr/loginwidget.cpp" line="21"/>
+        <location filename="view/usr/loginwidget.cpp" line="67"/>
         <source>密碼</source>
         <translation type="unfinished">Password</translation>
     </message>
     <message>
-        <location filename="view/usr/loginwidget.cpp" line="50"/>
+        <location filename="view/usr/loginwidget.cpp" line="80"/>
         <source>警告</source>
         <translation type="unfinished">Warning</translation>
     </message>
     <message>
-        <location filename="view/usr/loginwidget.cpp" line="50"/>
+        <location filename="view/usr/loginwidget.cpp" line="80"/>
         <source>請輸入賬戶和密碼</source>
         <translation type="unfinished">Please input your account and password</translation>
     </message>

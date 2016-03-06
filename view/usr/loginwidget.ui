@@ -223,7 +223,7 @@ QComboBox{
     <string>記住登入</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="btnConf">
+  <widget class="QMenuButton" name="btnConf">
    <property name="geometry">
     <rect>
      <x>430</x>
@@ -252,6 +252,13 @@ QComboBox{
    </property>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QMenuButton</class>
+   <extends>QPushButton</extends>
+   <header location="global">common/qmenubutton.h</header>
+  </customwidget>
+ </customwidgets>
  <tabstops>
   <tabstop>serialEdit</tabstop>
   <tabstop>passwdEdit</tabstop>
