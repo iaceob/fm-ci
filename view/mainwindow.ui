@@ -48,26 +48,32 @@
      <x>0</x>
      <y>0</y>
      <width>1014</width>
-     <height>26</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile_F">
     <property name="title">
      <string>&amp;File</string>
     </property>
-    <addaction name="actionS"/>
     <addaction name="exitAction"/>
    </widget>
+   <widget class="QMenu" name="menu_Setting">
+    <property name="title">
+     <string>&amp;Setting</string>
+    </property>
+    <addaction name="action_Language"/>
+   </widget>
    <addaction name="menuFile_F"/>
+   <addaction name="menu_Setting"/>
   </widget>
-  <action name="actionS">
-   <property name="text">
-    <string>S</string>
-   </property>
-  </action>
   <action name="exitAction">
    <property name="text">
     <string>&amp;Exit</string>
+   </property>
+  </action>
+  <action name="action_Language">
+   <property name="text">
+    <string>&amp;Language</string>
    </property>
   </action>
  </widget>

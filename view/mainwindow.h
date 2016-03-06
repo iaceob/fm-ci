@@ -8,8 +8,8 @@
 #include "nav/navmodel.h"
 #include "nav/navdelegate.h"
 
-#include "view/batchordermulti.h"
-#include "view/orderdelete.h"
+#include "view/order/batchordermulti.h"
+#include "view/order/orderdelete.h"
 
 
 

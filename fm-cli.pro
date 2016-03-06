@@ -16,27 +16,34 @@ SOURCES += main.cpp\
         view/mainwindow.cpp \
     nav/navdelegate.cpp \
     nav/navmodel.cpp \
-    view/orderdelete.cpp \
     model/ordermodel.cpp \
     common/navselect.cpp \
-    view/batchordermulti.cpp
+    view/order/batchordermulti.cpp\
+    view/order/orderdelete.cpp\
+    view/usr/loginwidget.cpp
 
 HEADERS  += view/mainwindow.h \
     nav/colordefines.h \
     nav/navdelegate.h \
     navview.h \
     nav/navmodel.h \
-    view/orderdelete.h \
+    view/order/orderdelete.h \
     model/ordermodel.h \
     common/navtype.h \
     common/navselect.h \
-    view/batchordermulti.h
+    view/order/batchordermulti.h \
+    view/usr/loginwidget.h
 
 FORMS    += view/mainwindow.ui \
-    view/orderdelete.ui \
-    view/batchordermulti.ui
+    view/order/orderdelete.ui \
+    view/order/batchordermulti.ui \
+    view/usr/loginwidget.ui
 
 RESOURCES += \
-    res.qrc
+    res.qrc \
 
 RC_FILE = fm-cli.rc
+
+TRANSLATIONS = aide_zh_CN.ts \
+    aide_zh_TW.ts \
+    aide_en_US.ts

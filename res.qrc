@@ -5,5 +5,7 @@
         <file>res/icon/expand_selected.png</file>
         <file>res/icon/unexpand_normal.png</file>
         <file>res/icon/unexpand_selected.png</file>
+        <file>res/icon/passwd.png</file>
+        <file>res/icon/person.png</file>
     </qresource>
 </RCC>
