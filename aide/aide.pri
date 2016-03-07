@@ -16,7 +16,6 @@ SOURCES += $$PWD/view/mainwindow.cpp \
 HEADERS  += $$PWD/view/mainwindow.h \
     $$PWD/nav/colordefines.h \
     $$PWD/nav/navdelegate.h \
-    $$PWD/navview.h \
     $$PWD/nav/navmodel.h \
     $$PWD/view/order/orderdelete.h \
     $$PWD/model/ordermodel.h \
