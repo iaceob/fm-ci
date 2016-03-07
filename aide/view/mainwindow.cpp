@@ -59,16 +59,16 @@ void MainWindow::collapseSlot(const QModelIndex &index) {
     QWidget *container = NULL;
     QString modalTitle;
     switch(NavSelect::getType(node->id)) {
-    case ORDER:
+    case NavType::ORDER:
         break;
-    case ORDER_BATCH_MILTI:
+    case NavType::ORDER_BATCH_MILTI:
         modalTitle = "批量下單 (多店鋪)";
         container = new BatchOrderMulti;
         break;
-    case ORDER_BATCH_SAME:
+    case NavType::ORDER_BATCH_SAME:
         modalTitle = "批量下單 (同店鋪)";
         break;
-    case ORDER_DELETE:
+    case NavType::ORDER_DELETE:
         modalTitle = "訂單刪除";
         container = new OrderDelete;
         break;

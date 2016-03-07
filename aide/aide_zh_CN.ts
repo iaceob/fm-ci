@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="zh_CN">
+<TS version="2.1" language="zh_CN">
 <context>
     <name>BatchOrderMulti</name>
     <message>
@@ -38,7 +38,7 @@
     </message>
     <message>
         <location filename="view/usr/loginwidget.ui" line="210"/>
-        <location filename="view/usr/loginwidget.cpp" line="65"/>
+        <location filename="view/usr/loginwidget.cpp" line="19"/>
         <source>登入</source>
         <translation type="unfinished">登录</translation>
     </message>
@@ -53,34 +53,54 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="view/usr/loginwidget.cpp" line="34"/>
+        <location filename="view/usr/loginwidget.cpp" line="44"/>
         <source>代理</source>
         <translation type="unfinished">代理</translation>
     </message>
     <message>
-        <location filename="view/usr/loginwidget.cpp" line="35"/>
+        <location filename="view/usr/loginwidget.cpp" line="45"/>
         <source>語言</source>
         <translation type="unfinished">语言</translation>
     </message>
     <message>
-        <location filename="view/usr/loginwidget.cpp" line="66"/>
+        <location filename="view/usr/loginwidget.cpp" line="20"/>
         <source>賬戶編號</source>
         <translation type="unfinished">账户编号</translation>
     </message>
     <message>
-        <location filename="view/usr/loginwidget.cpp" line="67"/>
+        <location filename="view/usr/loginwidget.cpp" line="21"/>
         <source>密碼</source>
         <translation type="unfinished">密码</translation>
     </message>
     <message>
-        <location filename="view/usr/loginwidget.cpp" line="80"/>
+        <location filename="view/usr/loginwidget.cpp" line="77"/>
+        <source>提醒</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="view/usr/loginwidget.cpp" line="77"/>
+        <source>部分語言切換需要重啟</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="view/usr/loginwidget.cpp" line="91"/>
         <source>警告</source>
         <translation type="unfinished">警告</translation>
     </message>
     <message>
-        <location filename="view/usr/loginwidget.cpp" line="80"/>
+        <location filename="view/usr/loginwidget.cpp" line="91"/>
         <source>請輸入賬戶和密碼</source>
         <translation type="unfinished">请输入账户和密码</translation>
+    </message>
+    <message>
+        <location filename="view/usr/loginwidget.cpp" line="107"/>
+        <source>消息</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="view/usr/loginwidget.cpp" line="107"/>
+        <source>Coming soon ...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -126,6 +146,19 @@
     <message>
         <location filename="view/order/orderdelete.ui" line="49"/>
         <source>CheckBox</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>QObject</name>
+    <message>
+        <location filename="common/aidelanguage.cpp" line="24"/>
+        <source>錯誤</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="common/aidelanguage.cpp" line="24"/>
+        <source>保存語言信息失敗</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -1,7 +1,7 @@
 #ifndef NAVTYPE
 #define NAVTYPE
 
-enum NavType {
+enum class NavType {
 
     //   訂單
     ORDER,

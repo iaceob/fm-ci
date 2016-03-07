@@ -8,7 +8,8 @@
 #include <QTranslator>
 #include <QMenu>
 #include <QDir>
-#include "common/aidelanguage.h"
+#include <QDesktopWidget>
+#include "aide/common/aidelanguage.h"
 
 namespace Ui {
 class LoginWidget;

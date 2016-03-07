@@ -4,7 +4,8 @@ AideLanguage::AideLanguage()  {
 
 }
 
-QString AideLanguage::saveLanFile = QDir::currentPath() + "/lan/lan.save";
+QString AideLanguage::saveLanPath = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/" + AIDE_DATA_PATH + "";
+QString AideLanguage::saveLanFile = "lan";
 
 /**
  * 保存選擇的語言到文件中, 供下次登錄後設定默認語言
@@ -12,8 +13,13 @@ QString AideLanguage::saveLanFile = QDir::currentPath() + "/lan/lan.save";
  * @param lan
  */
 void AideLanguage::saveLanguage(QString lan) {
+    qDebug() << AideLanguage::saveLanPath + "/" + AideLanguage::saveLanFile;
+    QDir *saveLanDir = new QDir;
+    if (!QFile::exists(AideLanguage::saveLanPath + "/" + AideLanguage::saveLanFile)) {
+        saveLanDir->mkpath(saveLanPath);
+    }
     QFile *file = new QFile;
-    file->setFileName(AideLanguage::saveLanFile );
+    file->setFileName(AideLanguage::saveLanPath + "/" + AideLanguage::saveLanFile);
     bool opend = file->open(QIODevice::WriteOnly);
     if (!opend) {
         QMessageBox::warning(NULL, QObject::tr("錯誤"), QObject::tr("保存語言信息失敗"));
@@ -22,7 +28,6 @@ void AideLanguage::saveLanguage(QString lan) {
     QTextStream out(file);
     out<<lan;
     file->close();
-    qDebug() << lan;
 }
 
 /**
@@ -32,7 +37,7 @@ void AideLanguage::saveLanguage(QString lan) {
  */
 QString AideLanguage::getLanguage() {
     QFile *file = new QFile();
-    file->setFileName(AideLanguage::saveLanFile );
+    file->setFileName(AideLanguage::saveLanPath + "/" + AideLanguage::saveLanFile);
     bool opend = file->open(QIODevice::ReadOnly);
     if (!opend) return QLocale::system().name();
     QTextStream in(file);

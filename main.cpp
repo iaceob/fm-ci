@@ -1,9 +1,9 @@
-#include "view/mainwindow.h"
-#include "view/usr/loginwidget.h"
+#include "aide/view/mainwindow.h"
+#include "aide/view/usr/loginwidget.h"
 #include <QApplication>
 #include <QTranslator>
 #include <QtDebug>
-#include "common/aidelanguage.h"
+#include "aide/common/aidelanguage.h"
 #include <QDir>
 
 int main(int argc, char *argv[]) {

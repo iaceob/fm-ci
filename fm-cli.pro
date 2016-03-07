@@ -4,50 +4,33 @@
 #
 #-------------------------------------------------
 
-QT       += core gui xml
+QT       += core gui xml sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = fm-cli
 TEMPLATE = app
+CONFIG     += c++11
 
+DESTDIR     = bin
+UI_DIR      = compiled/ui
+MOC_DIR     = compiled/moc
+OBJECTS_DIR = compiled/obj
+RCC_DIR     = compiled/qrc
 
-SOURCES += main.cpp\
-        view/mainwindow.cpp \
-    nav/navdelegate.cpp \
-    nav/navmodel.cpp \
-    model/ordermodel.cpp \
-    common/navselect.cpp \
-    view/order/batchordermulti.cpp\
-    view/order/orderdelete.cpp\
-    view/usr/loginwidget.cpp \
-    common/qmenubutton.cpp \
-    common/aidelanguage.cpp
+include(aide/aide.pri)
+include(util/util.pri)
+include(bean/bean.pri)
+include(dao/dao.pri)
+include(db/db.pri)
 
-HEADERS  += view/mainwindow.h \
-    nav/colordefines.h \
-    nav/navdelegate.h \
-    navview.h \
-    nav/navmodel.h \
-    view/order/orderdelete.h \
-    model/ordermodel.h \
-    common/navtype.h \
-    common/navselect.h \
-    view/order/batchordermulti.h \
-    view/usr/loginwidget.h \
-    common/qmenubutton.h \
-    common/aidelanguage.h
+SOURCES += main.cpp
 
-FORMS    += view/mainwindow.ui \
-    view/order/orderdelete.ui \
-    view/order/batchordermulti.ui \
-    view/usr/loginwidget.ui
+HEADERS  +=
 
-RESOURCES += \
-    res.qrc \
+FORMS    +=
 
-RC_FILE = fm-cli.rc
-
-TRANSLATIONS = aide_zh_CN.ts \
-    aide_zh_TW.ts \
-    aide_en_US.ts
+DISTFILES += \
+    resources/sql/product.sql.xml \
+    resources/sql/user.sql.xml \
+    resources/config.json

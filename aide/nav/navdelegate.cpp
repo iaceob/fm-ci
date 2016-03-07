@@ -1,7 +1,7 @@
 
 #include "navdelegate.h"
 
-#include "nav/navmodel.h"
+#include "aide/nav/navmodel.h"
 #include "colordefines.h"
 
 #include <QPainter>

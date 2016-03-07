@@ -9,6 +9,10 @@ LoginWidget::LoginWidget(QWidget *parent) :
     this->setMaximumSize(528, 393);
     this->setMinimumSize(528, 393);
 
+    //
+    QDesktopWidget* desktop = qApp->desktop();
+    this->move((desktop->width() - this->width())/2, (desktop->height() - this->height())/2);
+
     // this->refreshLanguage(QLocale::system().name());
     // this->refreshLanguage("en_US");
 
@@ -17,7 +21,7 @@ LoginWidget::LoginWidget(QWidget *parent) :
     this->ui->passwdEdit->setPlaceholderText(tr("密碼"));
 
     // 取消系統標題欄目
-    this->setWindowFlags(Qt::WindowStaysOnTopHint|Qt::FramelessWindowHint);
+    this->setWindowFlags(Qt::FramelessWindowHint);
     this->setWindowIcon(QIcon(":/res/icon/aide.png"));
 
     this->ui->labelLogo->setPixmap(QPixmap(":/res/icon/aide.png"));

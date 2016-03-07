@@ -5,11 +5,11 @@
 #include <QMessageBox>
 #include <QtDebug>
 
-#include "nav/navmodel.h"
-#include "nav/navdelegate.h"
+#include "aide/nav/navmodel.h"
+#include "aide/nav/navdelegate.h"
 
-#include "view/order/batchordermulti.h"
-#include "view/order/orderdelete.h"
+#include "aide/view/order/batchordermulti.h"
+#include "aide/view/order/orderdelete.h"
 
 
 
