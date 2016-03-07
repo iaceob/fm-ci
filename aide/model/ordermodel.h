@@ -2,8 +2,7 @@
 #define ORDERMODEL_H
 
 
-class OrderModel
-{
+class OrderModel {
 public:
     OrderModel();
 };
