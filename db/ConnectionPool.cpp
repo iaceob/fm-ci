@@ -155,12 +155,21 @@ QSqlDatabase ConnectionPool::createConnection(const QString &connectionName) {
 
     // 创建一个新的连接
     QSqlDatabase db = QSqlDatabase::addDatabase(data->databaseType, connectionName);
-    db.setHostName(data->hostName);
-    db.setDatabaseName(data->databaseName);
-    db.setUserName(data->username);
-    db.setPassword(data->password);
+    if (data->databaseType != "QODBC" && data->databaseType != "QODBC3") {
+        db.setHostName(data->hostName);
+        db.setDatabaseName(data->databaseName);
+        db.setUserName(data->username);
+        db.setPassword(data->password);
+    } else {
+        db.setDatabaseName(QString("DRIVER={FreeTDS};Server=%1;Database=%2;Uid=%3;Port=%4;Pwd=%5;WSID=.")
+                           .arg(data->hostName)
+                           .arg(data->databaseName)
+                           .arg(data->username)
+                           .arg(data->port)
+                           .arg(data->password));
+    }
 
-    if (data->port != 0) {
+    if ((data->databaseType != "QODBC" && data->databaseType != "QODBC3")  && data->port != 0) {
         db.setPort(data->port);
     }
 

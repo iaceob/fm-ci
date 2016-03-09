@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <layout>
+        <node id="order" label="訂單">
+            <node id="order.batch_order_multi" label="批量下單 (多)"></node>
+            <node id="order.batch_order_same" label="批量下單 (同)"></node>
+            <node id="order.delete" label="訂單刪除"></node>
+        </node>
+        <node id="depot" label="倉庫">
+            <node id="depot.out_online" label="線上發貨"></node>
+            <node id="depot.out_offline" label="線下發貨"></node>
+            <node id="depot.out_batch" label="批量發貨"></node>
+            <node id="depot.undo" label="發貨撤銷"></node>
+        </node>
+        <node id="stock" label="庫存">
+            <node id="stock.in" label="商品入庫"></node>
+            <node id="stock.inventory" label="庫存盤點"></node>
+            <node id="stock.allocation" label="庫存調撥"></node>
+        </node>
+        <node id="report" label="報表">
+            <node id="report.shop" label="店鋪信息報表"></node>
+        </node>
+        <node id="conf" label="設定">
+            <node id="conf.node" label="節點"></node>
+            <node id="conf.access" label="權限"></node>
+        </node>
+    </layout>
+</root>
