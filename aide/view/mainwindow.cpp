@@ -20,7 +20,7 @@ MainWindow::MainWindow(QWidget *parent) :
     // 設定菜單列表
     this->navModel = new NavModel(this);
     qDebug() << QCoreApplication::applicationDirPath();
-    this->navModel->ReadDataFromConfig(QCoreApplication::applicationDirPath() + "/config.xml");
+    this->navModel->ReadDataFromConfig(QString("%1/resources/config.xml").arg(QCoreApplication::applicationDirPath()));
     NavDelegate* delegate = new NavDelegate(this);
     this->ui->listView->setModel(this->navModel);
     this->ui->listView->setItemDelegate(delegate);

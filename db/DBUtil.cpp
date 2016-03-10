@@ -1,7 +1,6 @@
 #include "DBUtil.h"
 #include "ConnectionPool.h"
 #include "util/ConfigUtil.h"
-#include <functional>
 
 int DBUtil::insert(const QString &sql, const QVariantMap &params) {
     int id = -1;

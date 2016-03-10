@@ -1,6 +1,8 @@
 #ifndef DBUTIL_H
 #define DBUTIL_H
 
+// gcc 5.3  需引入 functional 才可使用  std::function
+#include <functional>
 #include <QMap>
 #include <QList>
 #include <QtSql>
