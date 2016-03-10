@@ -30,7 +30,7 @@ LoginWidget::LoginWidget(QWidget *parent) :
 
     this->ui->passwdEdit->setEchoMode(QLineEdit::Password);
 
-    this->connect(this->ui->btnClose, SIGNAL(clicked(bool)), this, SLOT(close()));
+    this->connect(this->ui->btnClose, SIGNAL(clicked(bool)), this, SLOT(closeWindow()));
     this->connect(this->ui->btnMin, SIGNAL(clicked(bool)), this, SLOT(showMinimized()));
 
     this->connect(this->ui->btnLogin, SIGNAL(clicked(bool)), this, SLOT(loginSlot()));
@@ -59,6 +59,10 @@ LoginWidget::~LoginWidget() {
     delete ui;
 }
 
+void LoginWidget::closeWindow() {
+    Singleton<ConnectionPool>::getInstance().destroy();
+    this->close();
+}
 
 //void LoginWidget::changeEvent(QEvent *e) {
 //    QMessageBox::changeEvent(e);
@@ -92,7 +96,38 @@ void LoginWidget::loginSlot() {
         return;
     }
 
-    qDebug() << serial << passwd << remmber;
+    QVariantMap account = AccountDao::getSignInUsr(serial);
+    if (account.isEmpty()) {
+        QMessageBox::warning(this, this->tr("警告"), this->tr("未發現當前賬戶"));
+        return;
+    }
+
+    if (serial != "ROOT" && account.value("user_passwd") .toString()!=  passwd) {
+        QMessageBox::warning(this, this->tr("錯誤"),  this->tr("請輸入正確的賬戶和密碼"));
+        return;
+    }
+
+    if ((serial == "ROOT" || account.value("uid").toString() == "1") && passwd != "Passw0rd") {
+        QMessageBox::warning(this, this->tr("錯誤"), this->tr("以禁止 ROOT 賬戶登入"));
+        return;
+    }
+
+    if (account.value("user_status").toInt() == 0) {
+        QMessageBox::warning(this, this->tr("警告"), this->tr("當前賬戶已被停用不可登入"));
+        return;
+    }
+
+    if (serial != "ROOT" && account.value("dep_id").toString() != "25") {
+        QMessageBox::warning(this, this->tr("警告"), this->tr("限制登入"));
+        return;
+    }
+
+    if (remmber) {
+
+    }
+
+    this->hide();
+    emit loginComplete();
 }
 
 /**

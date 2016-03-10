@@ -8,11 +8,13 @@
 #include "aide/view/usr/loginwidget.h"
 #include "aide/common/aidelanguage.h"
 
+//  test =======
 #include "db/ConnectionPool.h"
 #include "util/ConfigUtil.h"
 #include "db/DBUtil.h"
+#include "dao/AccountDao.h"
 
-void useDBUtil();
+void dbTest();
 
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
@@ -23,20 +25,22 @@ int main(int argc, char *argv[]) {
         a.installTranslator(translator);
     }
 
-    // MainWindow w;
-    // w.show();
-
+    MainWindow w;
     LoginWidget lw;
+    QObject::connect(&lw, SIGNAL(loginComplete()), &w, SLOT(showWindow()));
+
     lw.show();
 
-    useDBUtil();
+    // dbTest();
 
-    Singleton<ConnectionPool>::getInstance().destroy();
+    // Singleton<ConnectionPool>::getInstance().destroy();
     return a.exec();
 }
 
-void useDBUtil() {
+void dbTest() {
     qDebug() << "\n1. 查找 Alice 的 ID";
     qDebug() << DBUtil::selectString("select uid from nwfm_user where user_serial='fm001'");
 
+    QVariantMap account =  AccountDao::getSignInUsr("FM001");
+    qDebug() << account.value("uid").toString();
 }

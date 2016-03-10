@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sqls namespace="Account">
+
+    <sql id="getSignInUsr">
+        select uid, dep_id, user_serial, user_name, user_passwd, user_email, user_status from nwfm_user where user_serial=:serial
+    </sql>
+
+</sqls>

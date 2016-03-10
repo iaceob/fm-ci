@@ -5,13 +5,16 @@
 #include <QString>
 #include <QVariant>
 #include <QVariantMap>
+#include <QtDebug>
+#include "bean/account.h"
+#include "db/DBUtil.h"
+#include "db/Sqls.h"
 
 class Account;
 
 class AccountDao {
 public:
-    static QList<Account> getUsrList();
-    static Account getUsrById(QString id);
+    static QVariantMap getSignInUsr(QString serial);
 private:
     static Account mapToUser(const QVariantMap &rowMap);
 };

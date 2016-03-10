@@ -4,6 +4,9 @@
 #include <QMainWindow>
 #include <QMessageBox>
 #include <QtDebug>
+#include <QCloseEvent>
+
+#include "db/ConnectionPool.h"
 
 #include "aide/nav/navmodel.h"
 #include "aide/nav/navdelegate.h"
@@ -24,6 +27,9 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+protected:
+    void closeEvent(QCloseEvent *);
+
 private:
     //  主界面
     Ui::MainWindow *ui;
@@ -37,10 +43,12 @@ private:
     QString appTitle;
 
 private slots:
+    //  登錄成功後顯示主界面
+    void showWindow();
     // 菜單點擊出發函數
     void collapseSlot(const QModelIndex &index);
     // 窗口關閉槽
-    void closeWindowSlot();
+    bool closeWindowSlot();
 
 };
 

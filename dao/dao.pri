@@ -1,7 +1,5 @@
 HEADERS += \
-    dao/UserDao.h \
-    $$PWD/accountdao.h
+    $$PWD/AccountDao.h
 
 SOURCES += \
-    dao/UserDao.cpp \
-    $$PWD/accountdao.cpp
+    $$PWD/AccountDao.cpp

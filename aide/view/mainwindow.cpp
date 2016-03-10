@@ -37,6 +37,20 @@ MainWindow::~MainWindow() {
     delete ui;
 }
 
+void MainWindow::showWindow()   {
+    this->show();//显示主窗口
+}
+
+void MainWindow::closeEvent(QCloseEvent *event) {
+    //  確認是否離開
+    if (this->closeWindowSlot()) {
+        // 確認離開銷毀數據庫連接
+        event->accept();
+        return;
+    }
+    event->ignore();
+}
+
 /**
  * 菜單雙擊出發槽
  * @brief MainWindow::collapseSlot
@@ -76,7 +90,10 @@ void MainWindow::collapseSlot(const QModelIndex &index) {
         break;
     }
 
-    if (container==NULL) return;
+    if (container==NULL) {
+        QMessageBox::information(this, this->tr("提示"),  "Coming soon ...");
+        return;
+    }
 
     modalTitle.isEmpty() ? (modalTitle=this->appTitle) : (modalTitle += " - " + this->appTitle);
     qDebug() << modalTitle;
@@ -89,10 +106,25 @@ void MainWindow::collapseSlot(const QModelIndex &index) {
 
 }
 
+/**
+ * 退出窗口
+ * @brief MainWindow::closeWindowSlot
+ * @return
+ */
+bool MainWindow::closeWindowSlot() {
+    QMessageBox::StandardButton button;
+    button = QMessageBox::question(this, this->tr("退出 %1").arg(this->appTitle),
+        QString(this->tr("確認退出 %1 ?").arg(this->appTitle)),
+        QMessageBox::Yes | QMessageBox::No);
 
-
-void MainWindow::closeWindowSlot() {
-    this->close();
+    if (button == QMessageBox::No) {
+        // event->ignore();  //忽略退出信号，程序继续运行
+        return false;
+    }
+    //  如果確認退出, 則銷毀數據庫連接
+    Singleton<ConnectionPool>::getInstance().destroy();
+    this->close();  //接受退出信号，程序退出
+    return true;
 }
 
 /**

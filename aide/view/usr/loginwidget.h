@@ -11,6 +11,9 @@
 #include <QDesktopWidget>
 #include "aide/common/aidelanguage.h"
 
+#include "db/ConnectionPool.h"
+#include "dao/AccountDao.h"
+
 namespace Ui {
 class LoginWidget;
 }
@@ -22,14 +25,19 @@ public:
     explicit LoginWidget(QWidget *parent = 0);
     ~LoginWidget();
 
+signals:
+    void loginComplete();
+
 protected:
     // void changeEvent(QEvent *);
+
 
 private:
     Ui::LoginWidget *ui;
     void refreshLanguage(QString lan);
 
 private slots:
+    void closeWindow();
     void loginSlot();
     void serialEditSlot();
     void confProxySlot();
@@ -37,5 +45,6 @@ private slots:
     void toLanZhCN();
     void toLanZhTW();
 };
+
 
 #endif // LOGINWIDGET_H

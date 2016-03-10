@@ -32,6 +32,7 @@ HEADERS  +=
 FORMS    +=
 
 DISTFILES += \
+    resources/config.xml \
     resources/sql/product.sql.xml \
-    resources/sql/user.sql.xml \
-    resources/config.json
+    resources/config.json \
+    resources/sql/account.sql.xml
