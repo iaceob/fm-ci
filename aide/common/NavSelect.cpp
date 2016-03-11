@@ -1,4 +1,4 @@
-#include "navselect.h"
+#include "NavSelect.h"
 
 NavSelect::NavSelect(){
    // this->navMap["order"] = NavType::ORDER;

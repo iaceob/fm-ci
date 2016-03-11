@@ -256,7 +256,7 @@ QComboBox{
   <customwidget>
    <class>QMenuButton</class>
    <extends>QPushButton</extends>
-   <header location="global">aide/common/qmenubutton.h</header>
+   <header location="global">aide/common/QMenuButton.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

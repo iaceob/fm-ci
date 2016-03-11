@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+#include "MainWindow.h"
 #include "ui_mainwindow.h"
 
 
@@ -45,7 +45,7 @@ void MainWindow::closeEvent(QCloseEvent *event) {
     //  確認是否離開
     if (this->closeWindowSlot()) {
         // 確認離開銷毀數據庫連接
-        event->accept();
+        // event->accept();
         return;
     }
     event->ignore();
@@ -112,6 +112,11 @@ void MainWindow::collapseSlot(const QModelIndex &index) {
  * @return
  */
 bool MainWindow::closeWindowSlot() {
+    if (AIDE_DEBUG) {
+        Singleton<ConnectionPool>::getInstance().destroy();
+        this->close();  //接受退出信号，程序退出
+        return true;
+    }
     QMessageBox::StandardButton button;
     button = QMessageBox::question(this, this->tr("退出 %1").arg(this->appTitle),
         QString(this->tr("確認退出 %1 ?").arg(this->appTitle)),
@@ -124,6 +129,19 @@ bool MainWindow::closeWindowSlot() {
     //  如果確認退出, 則銷毀數據庫連接
     Singleton<ConnectionPool>::getInstance().destroy();
     this->close();  //接受退出信号，程序退出
+
+    /*
+     * 退出登入時刪除鎖定文件
+     */
+    QString lockFile = QString("%1/%2").arg(AIDE_DATA_PATH).arg(AIDE_SAVE_LOCK);
+    if (QFile::exists(lockFile)) {
+        QFile *file = new QFile;
+        file->setFileName(lockFile);
+        file->remove();
+        file->close();
+    }
+    this->close();
+
     return true;
 }
 

@@ -1,4 +1,4 @@
-#include "loginwidget.h"
+#include "LoginWidget.h"
 #include "ui_loginwidget.h"
 
 LoginWidget::LoginWidget(QWidget *parent) :
@@ -61,6 +61,17 @@ LoginWidget::~LoginWidget() {
 
 void LoginWidget::closeWindow() {
     Singleton<ConnectionPool>::getInstance().destroy();
+
+    /*
+     * 退出登入時刪除鎖定文件
+     */
+    QString lockFile = QString("%1/%2").arg(AIDE_DATA_PATH).arg(AIDE_SAVE_LOCK);
+    if (QFile::exists(lockFile)) {
+        QFile *file = new QFile;
+        file->setFileName(lockFile);
+        file->remove();
+        file->close();
+    }
     this->close();
 }
 
@@ -71,7 +82,7 @@ void LoginWidget::closeWindow() {
 void LoginWidget::refreshLanguage(QString lan) {
 
     QTranslator translator;
-    bool b = translator.load(QDir::currentPath() + "/lan/aide_"+lan+".qm");
+    bool b = translator.load(QString("%1/lan/aide_%2_.qm").arg(QDir::currentPath()).arg(lan));
     if (!b) return;
     qApp->installTranslator(&translator);
     this->ui->retranslateUi(this);
@@ -122,8 +133,24 @@ void LoginWidget::loginSlot() {
         return;
     }
 
-    if (remmber) {
+    QFile *file = new QFile();
+    file->setFileName(QString("%1/%2").arg(AIDE_DATA_PATH).arg(AIDE_SAVE_USER));
+    bool opend = file->open(QIODevice::WriteOnly);
+    if (!opend) {
+        QMessageBox::warning(this, this->tr("警告"), this->tr("儲存登入信息失敗"));
+        return;
+    }
 
+    if (remmber) {
+        QTextStream out(file);
+        out << AccountKit::encryUserInfo(account.value("uid").toString(), account.value("user_serial").toString(),
+                                             account.value("user_name").toString(), account.value("user_mail").toString());
+        file->close();
+    } else {
+        if (file->exists() && !file->remove()) {
+            QMessageBox::warning(this, this->tr("警告"),  this->tr("儲存登入信息失敗"));
+        }
+        file->close();
     }
 
     this->hide();

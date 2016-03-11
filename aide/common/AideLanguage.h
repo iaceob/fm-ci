@@ -7,7 +7,7 @@
 #include <QMessageBox>
 #include <QStandardPaths>
 #include <QFile>
-#include "aide/common/aideproject.h"
+#include "aide/common/AideConst.h"
 
 class AideLanguage {
 public:
@@ -16,7 +16,7 @@ public:
     static QString getLanguage();
 
 private:
-    static QString saveLanPath;
+    // static QString saveLanPath;
     static QString saveLanFile;
 
 };

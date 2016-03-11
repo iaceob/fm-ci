@@ -1,4 +1,4 @@
-#include "batchordermulti.h"
+#include "BatchOrderiMulti.h"
 #include "ui_batchordermulti.h"
 
 BatchOrderMulti::BatchOrderMulti(QWidget *parent) :

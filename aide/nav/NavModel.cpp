@@ -1,4 +1,4 @@
-#include "navmodel.h"
+#include "NavModel.h"
 
 
 #include <QFile>

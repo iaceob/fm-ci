@@ -4,8 +4,8 @@
 #include <QAbstractListModel>
 #include <vector>
 #include <QtDebug>
-#include "aide/common/navtype.h"
-#include "aide/common/navselect.h"
+#include "aide/common/NavType.h"
+#include "aide/common/NavSelect.h"
 
 class TreeNode :public QObject {
     Q_OBJECT

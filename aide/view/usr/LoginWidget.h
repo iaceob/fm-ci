@@ -8,9 +8,12 @@
 #include <QTranslator>
 #include <QMenu>
 #include <QDir>
+#include <QFile>
 #include <QDesktopWidget>
-#include "aide/common/aidelanguage.h"
 
+#include "aide/common/AideConst.h"
+#include "aide/common/AideLanguage.h"
+#include "aide/kit/AccountKit.h"
 #include "db/ConnectionPool.h"
 #include "dao/AccountDao.h"
 

@@ -4,7 +4,7 @@
 #include <map>
 #include <QString>
 #include <QtDebug>
-#include "navtype.h"
+#include "NavType.h"
 
 using namespace std;
 
