@@ -155,12 +155,20 @@ QSqlDatabase ConnectionPool::createConnection(const QString &connectionName) {
 
     // 创建一个新的连接
     QSqlDatabase db = QSqlDatabase::addDatabase(data->databaseType, connectionName);
+
+
+//    // db.setHostName(data->hostName);
+//    db.setDatabaseName(data->databaseName);
+//    db.setUserName(data->username);
+//    db.setPassword(data->password);
+//    if (data->port != 0)
+//        db.setPort(data->port);
+
     if (data->databaseType != "QODBC" && data->databaseType != "QODBC3") {
         db.setHostName(data->hostName);
         db.setDatabaseName(data->databaseName);
         db.setUserName(data->username);
         db.setPassword(data->password);
-
         if (data->port != 0)
             db.setPort(data->port);
     } else {
