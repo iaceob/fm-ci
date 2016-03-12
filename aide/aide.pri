@@ -8,11 +8,12 @@ SOURCES += \
     $$PWD/common/NavSelect.cpp \
     $$PWD/common/QMenuButton.cpp \
     $$PWD/view/usr/LoginWidget.cpp \
-    $$PWD/view/order/BatchOrderiMulti.cpp \
     $$PWD/view/order/OrderDelete.cpp \
     $$PWD/view/MainWindow.cpp \
     $$PWD/nav/NavModel.cpp \
-    $$PWD/nav/NavDelegate.cpp
+    $$PWD/nav/NavDelegate.cpp \
+    $$PWD/view/order/BatchOrderMulti.cpp \
+    $$PWD/common/DataCenter.cpp
 
 HEADERS  += \
     $$PWD/kit/AccountKit.h \
@@ -21,19 +22,20 @@ HEADERS  += \
     $$PWD/common/NavType.h \
     $$PWD/common/QMenuButton.h \
     $$PWD/view/usr/LoginWidget.h \
-    $$PWD/view/order/BatchOrderiMulti.h \
     $$PWD/view/order/OrderDelete.h \
     $$PWD/view/MainWindow.h \
     $$PWD/nav/NavModel.h \
     $$PWD/nav/NavDelegate.h \
     $$PWD/nav/ColorDefines.h \
-    $$PWD/common/AideConst.h
+    $$PWD/common/AideConst.h \
+    $$PWD/view/order/BatchOrderMulti.h \
+    $$PWD/common/DataCenter.h
 
 FORMS    += \
-    $$PWD/view/usr/LoginWidget.ui \
-    $$PWD/view/order/OrderDelete.ui \
-    $$PWD/view/order/BatchOrderMulti.ui \
-    $$PWD/view/MainWindow.ui
+    $$PWD/view/usr/loginwidget.ui \
+    $$PWD/view/order/batchordermulti.ui \
+    $$PWD/view/order/orderdelete.ui \
+    $$PWD/view/mainwindow.ui
 
 
 

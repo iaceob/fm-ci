@@ -4,12 +4,24 @@
 
 //}
 
-QString AccountKit::encryUserInfo(const QString &uid, const QString &serial, const QString &name, const QString &email)  {
+QVariantMap AccountKit::account;
+
+QString AccountKit::encryAccountInfo(const QString &uid, const QString &serial, const QString &name, const QString &email)  {
     QString merge = QString("%1\n%2\n%3\n%4").arg(uid).arg(serial).arg(name).arg(email);
-    qDebug() << merge;
+    // qDebug() << merge;
     return getXorEncryptDecrypt(merge, AIDE_ENCRY_KEY);
 }
 
+void AccountKit::setAccount(const QString &uid, const QString &serial, const QString &name, const QString &email) {
+    AccountKit::account.insert("id", uid);
+    AccountKit::account.insert("serial", serial);
+    AccountKit::account.insert("name", name);
+    AccountKit::account.insert("email", email);
+}
+
+QVariantMap AccountKit::getAccount() {
+    return AccountKit::account;
+}
 
 // =============
 // 以下為裝腔作勢的加密算法, 只是為了
@@ -28,6 +40,8 @@ QString AccountKit::getXorEncryptDecrypt(const QString &str, const char &key) {
   return result;
 }
 
+
+// ====== private
 QString AccountKit::byteToQString(const QByteArray &byte) {
   QString result;
   if(byte.size() > 0){

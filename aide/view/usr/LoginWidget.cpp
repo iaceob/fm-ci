@@ -9,7 +9,7 @@ LoginWidget::LoginWidget(QWidget *parent) :
     this->setMaximumSize(528, 393);
     this->setMinimumSize(528, 393);
 
-    //
+    // 窗口居中顯示
     QDesktopWidget* desktop = qApp->desktop();
     this->move((desktop->width() - this->width())/2, (desktop->height() - this->height())/2);
 
@@ -141,9 +141,11 @@ void LoginWidget::loginSlot() {
         return;
     }
 
+    // 如果記住登入
     if (remmber) {
         QTextStream out(file);
-        out << AccountKit::encryUserInfo(account.value("uid").toString(), account.value("user_serial").toString(),
+        // 將賬戶信息寫入到文件中保存
+        out << AccountKit::encryAccountInfo(account.value("uid").toString(), account.value("user_serial").toString(),
                                              account.value("user_name").toString(), account.value("user_mail").toString());
         file->close();
     } else {
@@ -153,6 +155,10 @@ void LoginWidget::loginSlot() {
         file->close();
     }
 
+    // 儲存賬戶信息
+    AccountKit::setAccount(account.value("uid").toString(), account.value("user_serial").toString(),
+                           account.value("user_name").toString(), account.value("user_mail").toString());
+    qDebug() << AccountKit::getAccount();
     this->hide();
     emit loginComplete();
 }

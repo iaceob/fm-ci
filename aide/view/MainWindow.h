@@ -8,9 +8,10 @@
 #include <QFile>
 
 #include "aide/common/AideConst.h"
+#include "aide/common/DataCenter.h"
 #include "aide/nav/NavModel.h"
 #include "aide/nav/NavDelegate.h"
-#include "aide/view/order/BatchOrderiMulti.h"
+#include "aide/view/order/BatchOrderMulti.h"
 #include "aide/view/order/OrderDelete.h"
 #include "db/ConnectionPool.h"
 
@@ -31,6 +32,7 @@ protected:
     void closeEvent(QCloseEvent *);
 
 private:
+    NavType prevNav = NavType::HOME;
     //  主界面
     Ui::MainWindow *ui;
     // 菜單列表

@@ -35,4 +35,6 @@ DISTFILES += \
     resources/config.xml \
     resources/sql/product.sql.xml \
     resources/config.json \
-    resources/sql/account.sql.xml
+    resources/sql/account.sql.xml \
+    resources/sql/depot.sql.xml \
+    resources/sql/shop.sql.xml

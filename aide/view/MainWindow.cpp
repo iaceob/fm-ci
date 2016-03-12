@@ -19,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // 設定菜單列表
     this->navModel = new NavModel(this);
-    qDebug() << QCoreApplication::applicationDirPath();
+    // qDebug() << QCoreApplication::applicationDirPath();
     this->navModel->ReadDataFromConfig(QString("%1/resources/config.xml").arg(QCoreApplication::applicationDirPath()));
     NavDelegate* delegate = new NavDelegate(this);
     this->ui->listView->setModel(this->navModel);
@@ -38,6 +38,12 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::showWindow()   {
+
+    /*
+     * 初始化數據, 此處為登錄後跳轉數據中心設置
+     * 若選擇保持登入, 則在 main 中執行
+     */
+    DataCenter::init();
     this->show();//显示主窗口
 }
 
@@ -72,7 +78,11 @@ void MainWindow::collapseSlot(const QModelIndex &index) {
 
     QWidget *container = NULL;
     QString modalTitle;
-    switch(NavSelect::getType(node->id)) {
+    // NavType prevNav = NavType::
+    NavType currNav = NavSelect::getType(node->id);
+    if (currNav == this->prevNav) return;
+    this->prevNav = currNav;
+    switch(currNav) {
     case NavType::ORDER:
         break;
     case NavType::ORDER_BATCH_MILTI:
@@ -102,8 +112,6 @@ void MainWindow::collapseSlot(const QModelIndex &index) {
     this->clearLayout(this->containerLayout);
     this->containerLayout->addWidget(container);
     this->ui->widget->setLayout(this->containerLayout);
-
-
 }
 
 /**
@@ -140,6 +148,7 @@ bool MainWindow::closeWindowSlot() {
         file->remove();
         file->close();
     }
+    DataCenter::clear();
     this->close();
 
     return true;

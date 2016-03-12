@@ -1,9 +1,9 @@
 #include "AccountDao.h"
 
-const char * const SQL_NAMESPACE_USER = "Account";
+const char * const SQL_NAMESPACE = "Account";
 
 QVariantMap AccountDao::getSignInUsr(QString serial) {
-    QString sql = Singleton<Sqls>::getInstance().getSql(SQL_NAMESPACE_USER, "getSignInUsr");
+    QString sql = Singleton<Sqls>::getInstance().getSql(SQL_NAMESPACE, "getSignInUsr");
     // QString sql = QString("select uid, user_serial, user_name, user_passwd, user_email, user_status from nwfm_user where user_serial=%1").arg(serial);
     QVariantMap params;
     params["serial"] = serial;

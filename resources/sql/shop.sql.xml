@@ -1,0 +1,12 @@
+<sqls namespace="Shop">
+
+    <sql id="getShopSelectList">
+    select
+    shop_id, shop_serial, shop_name
+    from nwfm_shop where shop_status=1 and city_id not in (
+    select city_id from nwfm_city where province_id in ('32','33','34')
+    )
+    order by shop_serial
+    </sql>
+
+</sqls>

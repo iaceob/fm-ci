@@ -9,6 +9,7 @@
 #include "aide/view/usr/LoginWidget.h"
 #include "aide/common/AideLanguage.h"
 #include "aide/common/AideConst.h"
+#include "aide/common/DataCenter.h"
 
 //  test =======
 #include "db/ConnectionPool.h"
@@ -44,7 +45,7 @@ int main(int argc, char *argv[]) {
      * 啟動後裝載相應的語言包
      */
     QString translatorFileName = QString("%1/lan/aide_%2.qm").arg(QDir::currentPath()).arg(AideLanguage::getLanguage());
-    qDebug() << translatorFileName;
+    // qDebug() << translatorFileName;
     QTranslator *translator = new QTranslator(&a);
     if (translator->load(translatorFileName)) {
         a.installTranslator(translator);
@@ -57,18 +58,46 @@ int main(int argc, char *argv[]) {
     LoginWidget lw;
     QObject::connect(&lw, SIGNAL(loginComplete()), &w, SLOT(showWindow()));
     // TODO  檢測是否保持登入, 若是則直接啟動 MainWIndow 窗口, 而非登入窗口
-    lw.show();
+
+
+    QFile *file = new QFile();
+    file->setFileName(QString("%1/%2").arg(AIDE_DATA_PATH).arg(AIDE_SAVE_USER));
+    // qDebug() << QString("%1/%2").arg(AIDE_DATA_PATH).arg(AIDE_SAVE_USER);
+    if (!(file->open(QIODevice::ReadOnly))) {
+        file->close();
+        lw.show();
+    } else {
+        QTextStream in(file);
+        QString userInfo = in.readLine(0);
+        // qDebug() << userInfo;
+        file->close();
+        userInfo = AccountKit::getXorEncryptDecrypt(userInfo, AIDE_ENCRY_KEY);
+        QStringList uis = userInfo.split("\n");
+        AccountKit::setAccount(uis.at(0), uis.at(1), uis.at(2), uis.at(3));
+        qDebug() << AccountKit::getAccount();
+
+        // TODO 數據初始化較為耗時, 可以做一個啟動畫面等待
+
+        /*
+         * 初始化數據
+         */
+        DataCenter::init();
+
+        w.show();
+    }
+
+    // lw.show();
 
     /*
      * 啟動後寫入啟動鎖文件
      */
-    QFile *file = new QFile();
     file->setFileName(lockFile);
     bool opend = file->open(QIODevice::WriteOnly);
     QTextStream out(file);
     out << "";
     file->close();
     // dbTest();
+
 
     // Singleton<ConnectionPool>::getInstance().destroy();
     return a.exec();

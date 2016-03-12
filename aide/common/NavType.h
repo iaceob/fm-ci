@@ -3,6 +3,9 @@
 
 enum class NavType {
 
+    // 主頁
+    HOME,
+
     //   訂單
     ORDER,
     // 多店鋪批量發貨

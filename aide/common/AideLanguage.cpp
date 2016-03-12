@@ -14,7 +14,7 @@ QString AideLanguage::saveLanFile = QString("%1/%2").arg(AIDE_DATA_PATH).arg(AID
  */
 void AideLanguage::saveLanguage(QString lan) {
     // QString lanFile = QString("%1/%2").arg(AIDE_DATA_PATH).arg(AideLanguage::saveLanFile);
-    qDebug() << AideLanguage::saveLanFile;
+    // qDebug() << AideLanguage::saveLanFile;
     if (!QFile::exists(AIDE_DATA_PATH)) {
         QDir *saveLanDir = new QDir;
         saveLanDir->mkpath(AIDE_DATA_PATH);
