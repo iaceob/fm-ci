@@ -5,8 +5,14 @@
 #include <QDebug>
 #include <QList>
 #include <QVariantMap>
+#include <QMessageBox>
+#include <QLineEdit>
+#include <QSpinBox>
+#include <QInputDialog>
 
+#include "aide/kit/ToolKit.h"
 #include "aide/common/DataCenter.h"
+#include "aide/view/dialog/QTextDialog.h"
 
 namespace Ui {
 class BatchOrderMulti;
@@ -35,6 +41,12 @@ private:
      * @brief loadShopTable 裝載店鋪列表
      */
     void loadShopTable();
+
+private slots:
+    /**
+     * @brief importDataSlot 數據導入事件
+     */
+    void importDataSlot();
 };
 
 #endif // BATCHORDERMULTI_H

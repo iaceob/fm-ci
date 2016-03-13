@@ -13,7 +13,9 @@ SOURCES += \
     $$PWD/nav/NavModel.cpp \
     $$PWD/nav/NavDelegate.cpp \
     $$PWD/view/order/BatchOrderMulti.cpp \
-    $$PWD/common/DataCenter.cpp
+    $$PWD/common/DataCenter.cpp \
+    $$PWD/view/dialog/QTextDialog.cpp \
+    $$PWD/kit/ToolKit.cpp
 
 HEADERS  += \
     $$PWD/kit/AccountKit.h \
@@ -29,13 +31,16 @@ HEADERS  += \
     $$PWD/nav/ColorDefines.h \
     $$PWD/common/AideConst.h \
     $$PWD/view/order/BatchOrderMulti.h \
-    $$PWD/common/DataCenter.h
+    $$PWD/common/DataCenter.h \
+    $$PWD/view/dialog/QTextDialog.h \
+    $$PWD/kit/ToolKit.h
 
 FORMS    += \
-    $$PWD/view/usr/loginwidget.ui \
-    $$PWD/view/order/batchordermulti.ui \
-    $$PWD/view/order/orderdelete.ui \
-    $$PWD/view/mainwindow.ui
+    $$PWD/view/mainwindow.ui \
+    $$PWD/view/dialog/QTextDialog.ui \
+    $$PWD/view/order/BatchOrderMulti.ui \
+    $$PWD/view/order/OrderDelete.ui \
+    $$PWD/view/usr/LoginWidget.ui
 
 
 

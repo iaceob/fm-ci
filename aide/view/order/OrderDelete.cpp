@@ -1,5 +1,5 @@
 #include "OrderDelete.h"
-#include "ui_orderdelete.h"
+#include "ui_OrderDelete.h"
 
 OrderDelete::OrderDelete(QWidget *parent) :
     QWidget(parent),
